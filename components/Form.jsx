@@ -1,24 +1,47 @@
 'use client';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Resend } from 'resend';
 
 function Form() {
 	const {
 		register,
 		handleSubmit,
 		watch,
+		reset,
 		formState: { errors },
 	} = useForm();
-
-	const onSubmit = (data) => {
-		const { FullName, Country, Subject, Message } = data;
-
-		alert(JSON.stringify(data));
-	};
 
 	const validateMessage = (value) => {
 		const words = value.trim().split(/\s+/);
 		return words.length > 10;
+	};
+
+	const SendEmail = async (data) => {
+		try {
+			const response = await fetch('/api/sendEmail', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			});
+
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+
+			const responseData = await response.json();
+
+			console.log(JSON.stringify(responseData));
+
+			if (responseData.id) {
+				alert('Email Sent Successfully!');
+				reset();
+			}
+		} catch (error) {
+			alert('Failed to send email:', error);
+		}
 	};
 
 	return (
@@ -27,7 +50,7 @@ function Form() {
 				GET ME TO PLAY AT YOUR EVENT
 			</h1>
 			<form
-				onSubmit={handleSubmit(onSubmit)}
+				onSubmit={handleSubmit(SendEmail)}
 				className="flex flex-col w-full gap-y-6 mt-8 clash-Medium"
 			>
 				<div className="w-full flex gap-x-6">

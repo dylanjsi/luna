@@ -20,7 +20,7 @@ const Hero = () => {
     >
       <div className="flex  pt-28 flex-col items-center">
         <h1 className="lg:text-[10rem] text-[3.5rem] md:text-[5rem] text-white">
-          DJLUNA MAR
+          DJ LUNA MAR
         </h1>
         <span className="lg:text-[3.5rem] text-[1.5rem] md:text-[2.5rem] clashLight text-white">
           🌙The Soul of a Butterfly🦋

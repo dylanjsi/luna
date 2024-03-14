@@ -23,7 +23,7 @@ const Hero = () => {
           DJ LUNA MAR
         </h1>
         <span className="lg:text-[3.5rem] text-[1.5rem] md:text-[2.5rem] clashLight text-white">
-          🌙The Soul of a Butterfly🦋
+          🌙The Soul of a Butterflyy🦋
         </span>
 
         <Image
